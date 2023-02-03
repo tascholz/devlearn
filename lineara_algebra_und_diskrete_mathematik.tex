@@ -1,0 +1,306 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage{tabto}
+\usepackage{tcolorbox}
+
+\title{Lineare Algebra und diskrete Mathematik}
+\author{Timo Scholz}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\newpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+	\section{Grundlegende Begriffe und algebraische Strukturen}
+	\subsection{Zahlen und Mengen}
+	\subsubsection{Naiver Mengen- und Zahlenbegriff}
+	\begin{itemize}
+	\item Eine Menge ist definiert durch das, "was drin ist" (naiver Mengenbegriff
+	\item Sie enthält unterscheidbare Objekte ohne Vielfachheit
+	\item Die Reihenfolge der Elemente ist egal
+	\end{itemize}
+	Wichtige Mengen:
+	\begin{itemize}
+	\item $\mathbb{N}$: natürliche Zahlen \{1, 2, 3, ...\}
+	\item $\mathbb{N}_{0}$: natürliche Zahlen \{1, 2, 3, ...\}
+	\item $\mathbb{Z}$: ganze Zahlen \{..., -2, -1, 0, 1, 2, ...\}
+	\item $\mathbb{Q}$: rationale Zahlen \{$\frac{p}{q}: p,q \in \mathbb{Z}, q \neq 0$\} 
+	\item Unter Hinzunahme von Grenzwerten ergibt sich die Menge der reellen Zahlen $\mathbb{R}$
+	\end{itemize}
+	
+	\subsubsection{Mengenlehre}
+	Umfangsdefinition: $M = \{2, 4, 6, 8\}$ \\
+	Inhaltsdefinition: $M = \{m: m \in \mathbb{N},$ m ist gerade, $ m \leq 8 \}$ \\
+	Sei M eine Menge
+	\begin{itemize}
+	\item $m \in M$: M ist Element von M
+	\item $m \neq M$: M ist nicht Element von M
+	\item $M := \emptyset$: M ist die leere Menge \{\}
+	\item $| M |$: Anzahl der Elemente von M \\
+	(unendliche Mengen: $| M | = \infty$)
+	\end{itemize}
+	Seien A, B Mengen
+	\begin{itemize}
+	\item $A \subseteq B $: A ist Teilmenge von B, d.h. alle Elemente von A sind auch in B
+	\item $A = B $: A enthält genau die gleichen Elemente wie B, d.h. $A \subseteq B$ und $B \subseteq A$
+	\item $A \subset B $: A ist echte Teilmenge von B, d.h. $A \subseteq B$ und $A \neq B$
+	\end{itemize}
+	Falls $| A | = | B | < \infty$ und $A \subseteq B$, dann ist $A = B$
+	\begin{itemize}
+	\item $A \cup B$:= $\{a: a \in A$ oder $a \in B\}$ 
+	Vereinigung von A und B
+	\item $A \cap B$:= $\{a: a \in A$ und $a \in B\}$ Schnittmenge von A und B
+	\item $A \setminus B$:= $\{a, a \in A$ aber $a \notin B\}$ Differenzmenge von A und B
+	\end{itemize}
+	Für $| A | = | B | < \infty$ gilt: \\
+	$| A \setminus B | = | A | - | A \cap B | $ \\
+	$| A \cup B | = | A | + | B | - | A \cap B |$
+	\begin{itemize}
+	\item A und B heißen disjunkt, falls $A \cap B = \emptyset$
+	\end{itemize}
+	Für A, B disjunkt, schreibe auch $A \dot\cup B$ statt $A \cup B$
+	\begin{itemize}
+	\item Falls klar ist, welches M gemeint ist: $A^c$:= $M \setminus A$
+	\item Transitivität: Gilt $A \subseteq B$ und $B \subseteq C$, dann gilt auch $A \subseteq C$
+	\item Kommutativität: $A \cup B = B \cup A$
+
+	\item Assoziativität:  \tabto{2.5cm} $(A \cup B) \cup C = A \cup (B \cup C)$ \\
+	\tabto{2.5cm} $(A \cap B) \cap C = A \cap (B \cap C)$
+	\item Distributivität: \tabto{2.5cm} $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$\\
+	\tabto{2.5cm} $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+	\item De-morgansche Regeln: \tabto{3.8cm} $(A \cap B)^c = A^c \cup B^c$\\
+	\tabto{3.8cm} $(A \cup B)^c = A^c \cap B^c$
+	\end{itemize}
+	Sei A eine Menge
+	\begin{itemize}
+	\item $\mathcal{P}(A):= \{B: B \subseteq A\}$\\
+	\tabto{1cm} z.B. $\mathcal{P}(\{1,2\}) = \{\{1\}, \{2\}, \{1,2\}\}$ \tabto{7cm} $\mathcal{P}$ nennt man Potenzmenge  
+	\item $| \mathcal{P}(A) | = 2^{| A | }$
+	\end{itemize}
+	\subsubsection{Tupel und kartesische Produkte}
+	Seien A und B Mengen
+	\begin{itemize}
+	\item Tupel: $(a,b): a \in A, b \in B$
+	\item Kartesisches Produkt:= $A \times B \{(a,b): a \in A, b \in B\}$
+	\item Analog: $A_1 \times A_2 \times A_3 ... \times A_n :=\{(a_1, a_2, a_3 ... a_n): a_i \in A_i\}$
+	\end{itemize}
+	
+	\subsection{Aussagelogik und Funktionen}
+	\subsubsection{Logische Aussagen}
+	Eine logische Aussage ist entweder wahr oder falsch.\\
+	z.B. 4 ist durcch 2 teilbar.\\
+	\\
+	Seien A, B Aussagen
+	\begin{itemize}
+	\item $\lnot A$: Negation von A, ist genau dann wahr, wenn A falsch ist
+	\item $A \land B$: Konjunktion, ist genau dann wahr, wenn A und B beide wahr sind
+	\item $A \lor B$: Disjunktion, ist genau dann wahr, wenn A oder B oder beide wahr sind
+	\item $A \Rightarrow B$: Implikation, aus A folgt B
+	\item $A \Leftrightarrow B$: Äquivalenz, aus A folgt B und aus B folgt A
+	\end{itemize}
+	Für $A \Rightarrow B$ schreibt man auch
+	\begin{itemize}
+	\item A ist hinreichend für B
+	\item B ist notwendig für A
+	\item B gilt, wenn A gilt
+	\end{itemize}
+	Für $A \Leftrightarrow B$ schreibt man auch
+	\begin{itemize}
+	\item A = B
+	\item A ist notwendig und hinreichend für B
+	\item B ist notwendig und hinreichend für A
+	\item B gilt genau dann, wenn A gilt
+	\item A gilt genau dann, wenn B gilt
+	\end{itemize}
+	Seien A, B, C Aussagen
+	\begin{itemize}
+	\item Transitivität: \tabto{3.2cm} Aus $A \Rightarrow B$ und $B \Rightarrow C$ folgt $A \Rightarrow C$\\
+	\tabto{3.2cm} Aus $A \Leftrightarrow B$ und $B \Leftrightarrow C$ folgt $A \Leftrightarrow C$
+	\item Kommutativität: \tabto{3.2cm} $A \land B = B \land A$\\
+	\tabto{3.2cm} $A \lor B = B \lor A$
+	\item Assoziativität: \tabto{3.2cm} $(A \land B) \land C = A \land (B \land C)$\\
+	\tabto{3.2cm} $(A \lor B) \lor C = A \lor (B \lor C)$
+	\item Distributivität: \tabto{3.2cm} $A \land (B \lor C) = (A \land B) \lor (A \land C)$\\
+	\tabto{3.2cm} $A \lor (B \land C) = (A \lor B) \land (A \lor C)$
+	\item Doppelte Negation: \tabto{3.2cm} $\lnot ( \lnot A) = A$
+	\item De-morgansche Regeln: \tabto{3.2cm} $\lnot (A \lor B) = (\lnot A) \land (\lnot B)$\\
+	\tabto{3.2cm} $\lnot (A \land B) = (\lnot A) \lor (\lnot B)$
+	\item Komposition: $(A \Rightarrow B) = (\lnot B \Rightarrow \lnot A)$
+	\end{itemize}
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beweistechniken}
+	\begin{itemize}
+	\item direkter Beweis: $V \Rightarrow A$
+	\item indirekter Beweis: $\lnot A \Rightarrow \lnot V$
+	\item indirekter Beweis mit Widerspruch: Zeige $V \land (\lnot A) \Rightarrow B$ und B ist falsch
+	\item Zwischenschritte: $V \Rightarrow Z_1, Z_1 \Rightarrow Z_2, ... , Z_n-1 \Rightarrow Z_n, Z_n \Rightarrow A$
+	\item Fallunterscheidung: $V \Rightarrow F_1 \land F_2, F_1 \Rightarrow A, F_2 \Rightarrow A$
+	\end{itemize}
+	\end{tcolorbox}
+	
+	\subsubsection{Quantoren}
+	Sei X eine Menge
+	\begin{itemize}
+	\item Allquantoren: $\forall x \in X: A(x)$ \tabto{6cm} Für alle $x \in X$ gilt $A(x)$
+	\item Existenzquantoren: \tabto{3.2cm} $\exists x \in X: A(x)$ \tabto{6cm} Es existiert ein $x \in X$ für das $A(x)$ \\
+	\tabto{6cm} wahr ist\\
+	\tabto{3.2cm} $\exists! x \in X: A(x)$ \tabto{6cm} Es existiert genau ein $x \in X$ \\
+	\tabto{6cm} für das $A(x)$ wahr ist
+	\item Negation von Quantoren: \tabto{5cm} $\lnot (\forall x \in X: A(x)) \Leftrightarrow \exists x \in X: \lnot A(x)$\\
+	\tabto{5cm} $\lnot (\exists x \in X: A(x)) \Leftrightarrow \forall x \in X: \lnot A(x)$
+	\item Vertauschung (Kombination) von Allquantoren:\\
+	\tabto{2cm} $\forall x \in X: \forall y \in Y: A(x,y) \Leftrightarrow \forall y \in Y: \forall x \in X: A(x,y)$
+	\item Vertauschung (Kombination) von Existenzquantoren: \\
+	\tabto{2cm} $\exists x \in X: \exists y \in Y: A(x,y) \Leftrightarrow \exists y \in Y: \exists x \in X: A(x,y)$
+	\tabto{2cm} $\exists x |in X: \forall y \in Y: A(x,y) \Rightarrow \forall y \in Y: \exists x \in X: A(x,y)$\\
+	Fall 1: x kann nicht von y abhängen\\
+	Fall 2: x kann von z abhängen 
+	\end{itemize}
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beispiel} \\
+	\tabto{1cm} $\forall n \in \mathbb{N}: \exists m \in \mathbb{N} : m \geq n$ \tabto{6cm} Stimmt, wähle z.B. $m=n+1$\\
+	\tabto{1cm} $\exists  m \in \mathbb{N} : n \in \mathbb{N} : m \geq n$ \tabto{6cm} Stimmt nicht
+	\end{tcolorbox}
+	
+	\subsubsection{Funktionen}
+	Seien X und Y Mengen\\
+	Eine Funktion ordnet jedem $x |in X$ genau ein $y \in Y$ zu\\
+	\tabto{5cm} $f: X \to Y, x \mapsto y : f(x)$\\
+	X ist die Definitionsmenge, Y die Zielmenge\\
+	Statt Funktion sagt man auch Abbildung, Operator, Funktionale\\
+	$f: X \to Y$ ist:
+	\begin{itemize}
+	\item injektiv, falls \tabto{2.2cm} $\forall x, x^1 \in X: x \neq x^1 \Rightarrow f(x) \neq f(x^1)$\\
+	\tabto{1.8cm} $\Leftrightarrow \forall x, x^1 \in X: f(x) = f(x^1) \Rightarrow x = x^1$
+	\item surjektiv, falls $\forall y \in Y: \exists x \in X: f(x) = y$
+	\item bijektiv, falls f injektiv und surjektiv \\
+	\tabto{2cm} $\forall y \in Y: \exists! x \in X: f(x)=y$
+	\end{itemize}
+	Für bijektive Funktionen können wir die Umkehrfunktion definieren:
+	\tabto{2cm} $f^{-1} : Y \to X: f^{-1} (y) := x$ , wo $x \in X$ erfüllt $f(x) = y$\\\\
+	Seien $f: X \to Y, g: Y \to Z$ zwei Funktionen zwischen Mengen $X, Y, Z$\\
+	\tabto{2cm} $g \circ f = X \to Z, x \mapsto g \circ f(x) := g(f(x))$\\\\
+	Sind $f, g$ bijektiv, dann gilt \\
+	\tabto{2cm} $g \circ f$ bijektiv und $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$ \\\\
+	Sei $X' \subseteq X$ definiere \\
+	\tabto{2cm} $f(X') = \{f(x): x \in X'$\\
+	
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beispiel}\\
+	\tabto{2cm} $f: \mathbb{R} \to \mathbb{R} , f(x) = x^2$\\
+	\tabto{2cm} $f([1, 3]) = [1, 9]$
+	\end{tcolorbox}
+	Für $Y' \subseteq Y$ definiere \\
+	\tabto{2cm} $f^{-1}(Y'):= \{x \in X: f(x) \in Y\}$
+	\tabto{2cm} (auch dann, wenn f nicht bijektiv ist, also $f^{-1}: Y \to X$ nicht\\
+	\tabto{2cm} existiert)	
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beispiel}\\
+	\tabto{2cm} $f: \mathbb{R} \to \mathbb{R}, f(x) = x^2$ \\
+	\tabto{2cm} $f^{-1}([1, 9]) = [1, 3] \cup [-3, -1]$
+	\end{tcolorbox}
+	Falls $f$ bijektiv ist und $y \in Y$\\
+	\tabto{2cm} $x = f^{-1}(y)$ mit $f(x)=y$\\
+	\tabto{2cm} $\{x\} = f^{-1}(\{y\})$\\\\
+	Für $f: X \to Y$ gilt immer $|f(X) | \leq |X |$  \\\\
+	Falls $f$ injektiv $\Rightarrow | f(X) | = |X|$ \\\\
+	Ist $| X | = |Y| < \infty$ dann gilt $f$ injektiv $\Leftrightarrow | f(X) | = |X|$\\\\
+	Falls $f$ surjektiv $\Rightarrow f(x) = y \Rightarrow |f(x)| = |Y|$\\\\
+	Falls $Y < \infty$, dann gilt $f$ surjektiv $\Leftrightarrow |f(X)| = |Y|$\\\\
+	Ist $|X| = |Y| < \infty$, dann gilt $f$ injektiv $\Leftrightarrow f$ surjektiv $\Leftrightarrow f$ bijektiv
+	
+	\subsection{Algebraische Strukturen}
+	Sei A eine Menge
+	\begin{itemize}
+	\item Eine Verknüpfung ist eine Funktion\\
+	\tabto{2cm} $\circ : A \times A \to A$\\
+	Für $\circ (a,b)$ schreibe $a \circ b$ mit $a,b \in A$
+	\end{itemize}
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beispiel}\\
+	$\mathbb{N}$ mit $+$\\
+	$\mathbb{Z}$ mit $*$\\
+	\{falsch, wahr\} mit AND\\\\
+	Aber nicht $\mathbb{N}$ mit $-$, da das Ergebnis außerhalb von $\mathbb{N}$ liegen kann\\
+	\end{tcolorbox}	
+	Eine Gruppe $(G, \circ )$ ist eine Menge $G \neq \emptyset$ zusammen mit einer Verknüpfung $\circ : G \times G \to G$, für die gilt:
+	\begin{itemize}
+	\item (G1) Assoziativität: $(a \circ b ) \circ c = a \circ (b \circ c), \forall a,b,c \in G$
+	\item (G2) Existenz des neutralen Elements $\exists e \in G: a \circ e = e \circ a = a, \forall a \in G$
+	\item G(3) Existenz inverser Elemente $\forall a \in G: \exists a' \in G: a \circ a' = a' \circ a = e$
+	\end{itemize}
+	(G1) - G(3) heißen auch Gruppenaxiome
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beispiele}\\
+	$\mathbb{Z}$ mit $+$ ist eine Gruppe\\
+	$\mathbb{Q}$ mit $*$ ist keine Gruppe, da 0 kein inverses Element hat, aber\\
+	$\mathbb{Q} \setminus \{0\}$ ist eine Gruppe 
+	\end{tcolorbox}
+	Eine Gruppe heißt kommutativ (auch abelsch), wenn zusätzlich gilt:
+	\begin{itemize}
+	\item (G4) Kommutativität: $a \circ b = b \circ a, \forall a,b \in G$
+	\end{itemize}
+	Eine Menge $G \neq \emptyset$ mit Verknüpfung $\circ$ heißt Halbgruppe, wenn (G1) erfüllt ist\\
+	$(G, \circ)$ heißt kommutative Halbgruppe, falls (G1) und (G4) erfüllt sind\\\\
+	Ein Ring $(R, +, *)$ ist eine Menge $R \neq \emptyset$ zusammen mit zwei Verknüpfungen $+: R \times R \to R$ und $*: R \times R \to R$, für die gilt:
+	\begin{itemize}
+	\item (R1) $(R, +)$ ist eine kommutative Gruppe
+	\item (R2) $(R, *)$ ist eine Halbgruppe
+	\item (R3) Es gelten Distributivgesetze: $\forall a,b,c \in R$ gilt 
+	\tabto{2cm} $a * (b+c) = a*b + a*c$ \\
+	\tabto{2cm} $(a+b)*c = a*c + b*c$
+	\end{itemize}
+	$(R, +, *)$ heißt kommutativer Ring, falls $*$ kommutativ\\
+	$(R, +, *)$ heißt Ring mit 1, falls neutrales Element bezüglich $*$ existiert\\\\
+	Sei X Menge, R Ring
+	\tabto{2cm} $F:= \{f: X \to R\}$\\
+	\tabto{2cm} $+: F \times F \to F, (f+g)(x) = f(x) + g(x)$\\
+	\tabto{2cm} $*: F \times F \to F, (f*g)(x) = f(x) * g(x)$\\
+	Dann ist $(F, +, *)$ ein Ring. Ist R kommutativ, dann auch $F$. Besitzt R eine Eins, dann auch $F$\\\\
+	Ein Körper (engl. field) $(K, +, *)$ ist eine Menge K mit Verknüpfungen $+, *)$, für die gilt:
+	\begin{itemize}
+	\item (K1) $(K, +)$ ist eine kommutative Gruppe\\
+	\item (K2) $(K \setminus \{0\}, *)$ ist eine kommutative Gruppe\\
+	\item (K3) Es gelten die Distributivgesetze: \tabto{6.5cm} $a * (b + c) = a*b + a*c)$\\
+	\tabto{6.5cm} $(a + b) * c = a * c + b * c$
+	\end{itemize}
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Beispiel}\\
+	$(\mathbb{Q}, +, *)$ ist ein Körper\\
+	Rechenregeln im Körper: Für $x,y,z \in K$
+	\begin{itemize}
+	\item Kommutativgesetz \tabto{4cm} $x+y = y+x$\\
+	\tabto{4cm} $x*y = y*x$
+	\item Assoziativgesetz \tabto{4cm} $(x+y)+z = x+(y+z)$\\
+	\tabto{4cm} $(x*y)*z = x*(y*z)$
+	\item Distributivgesetz \tabto{4cm} $x*(y+z) = x*y + x*z$
+	\item Neutrale Elemente \tabto{4cm} $x+0=x$\\
+	\tabto{4cm} $x*1=x$
+	\item Inverse Elemente \tabto{4cm} $x+(-x) = 0$\\
+	\tabto{4cm} $x*x^{-1} = 1$, für $x \neq 0$
+	\end{itemize}
+	\end{tcolorbox}
+	
+	\section{Diskrete Mathematik} 
+	Die diskrete Mathematik beschäftigt sich mit endlichen Mengen $\mathbb{N}$ oder $\mathbb{Z}$
+	\subsection{Natürliche Zahlen und vollständige Induktion}
+	$\mathbb{N} = \{1, 2, 3, ...\}$\\
+	$\mathbb{N}$ ist die Menge, die die 1 enthält und zu jeder Zahl $n \in \mathbb{N}$ auch $n+1$ enthält
+	\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+	\textbf{Satz 2.1 Vollständige Induktion}\\
+	Gilt eine Aussage $A(n)$ für $n=1$ und gilt außerdem $A(n) \Rightarrow A(n+1)$, dann gilt $A(n), \forall n \in \mathbb{N}$\\
+	Beweis: Die Menge der $n$, für die $A(n)$ gilt, enthält 1 und für jede enthaltene Zahl ist auch +1 enthalten. Dies ist also $\mathbb{N}$
+	\end{tcolorbox}
+	
+
+
+	
+	
+
+	
+
+	
+\end{document}
